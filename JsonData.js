@@ -1,5 +1,5 @@
 // JSON data representing a list of books
-const jsonData = [
+const books = `[
     {
       "title": "The power of now",
       "author": "Eckhart Tolle ",
@@ -19,29 +19,33 @@ const jsonData = [
       "price": 19.99
     },
     {
-      "title": "The LAw of Human Nature",
+      "title": "The Law of Human Nature",
       "author": "RObert Greene",
       "publishedYear": 1950,
       "price": 9.99
     }
-  ];
+  ]`;
   
   
-  const books = JSON.parse(JSON.stringify(jsonData));
+  const parsebooks = JSON.parse(books);
+
   
   // Calculate and log the total price of all the books
-  const totalPrice = books.reduce((total, book) => total + book.price, 0);
-  console.log("Total Price of All Books: $" + totalPrice.toFixed(2));
+  const Pricesum = parsebooks.reduce((sum, book) => sum + book.price, 0);
+  console.log("price sum", Pricesum);
   
-  // Filter the books published before the year 1960 and create a new array with these books
-  const olderBooks = books.filter(book => book.publishedYear < 1960);
+  // Filter the books published before the year 1960 
+  const olderBooks = parsebooks.filter(book => book.publishedYear < 1960);
+  console.log("books published before the year 1960");
+  console.log(olderBooks);
+  // Sort the books by their published year in ascending
+  const sortedBooks = parsebooks.sort((a, b) => a.publishedYear - b.publishedYear);
+
   
-  // Sort the books by their published year in ascending order
-  const sortedBooks = books.sort((a, b) => a.publishedYear - b.publishedYear);
   
-  // Log the filtered and sorted books
   console.log("Books Published Before 1960:");
   console.log(olderBooks);
+  
   
   console.log("Books Sorted by Published Year (Ascending):");
   console.log(sortedBooks);
